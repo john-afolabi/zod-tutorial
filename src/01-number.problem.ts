@@ -5,7 +5,8 @@ import { z } from "zod";
 //       ^ 🕵️‍♂️
 
 export const toString = (num: unknown) => {
-  return String(num);
+  const numParsed = z.number().parse(num)
+  return String(numParsed);
 };
 
 // TESTS
