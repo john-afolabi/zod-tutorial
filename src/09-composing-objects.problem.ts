@@ -5,22 +5,22 @@ import { Equal, Expect } from "./helpers/type-utils";
  * 🕵️‍♂️ Refactor this code below to reduce the duplication,
  * while also making sure the cases don't go red!
  */
+const ObjectWithId= z.object({
+  id: z.string().uuid()
+})
 
-const User = z.object({
-  id: z.string().uuid(),
+const User = ObjectWithId.merge(z.object({
   name: z.string(),
-});
+}));
 
-const Post = z.object({
-  id: z.string().uuid(),
+const Post = ObjectWithId.merge(z.object({
   title: z.string(),
   body: z.string(),
-});
+}));
 
-const Comment = z.object({
-  id: z.string().uuid(),
+const Comment = ObjectWithId.merge(z.object({
   text: z.string(),
-});
+}));
 
 type cases = [
   Expect<Equal<z.infer<typeof Comment>, { id: string; text: string }>>,
