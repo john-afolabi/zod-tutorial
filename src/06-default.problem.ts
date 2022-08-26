@@ -5,9 +5,9 @@ import { z } from "zod";
 
 const Form = z.object({
   repoName: z.string(),
-  keywords: z.array(z.string()).optional(),
+  keywords: z.array(z.string()).default([]),
   //                           ^ 🕵️‍♂️
-});
+}); 
 
 export const validateFormInput = (values: unknown) => {
   const parsedData = Form.parse(values);
